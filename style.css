@@ -1,0 +1,454 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ 
+   background: rgb(250, 223, 174);
+
+   background-size: 400% 400%;
+   animation: gradientShift 8s ease infinite;
+   min-height: 100vh;
+   position: relative;
+   overflow-x: hidden;
+}
+@keyframes gradientShift {
+   0% { background-position: 0% 50%; }
+   50% { background-position: 100% 50%; }
+   100% { background-position: 0% 50%; }
+}
+
+/* النجوم المتحركة */
+body::before {
+   content: '';
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-image: 
+       radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+       radial-gradient(2px 2px at 40px 70px, #ffb6c1, transparent),
+       radial-gradient(1px 1px at 90px 40px, #ffd1dc, transparent),
+       radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+       radial-gradient(2px 2px at 160px 30px, #ffb6c1, transparent);
+   background-repeat: repeat;
+   background-size: 200px 100px;
+   animation: sparkle 4s linear infinite;
+   pointer-events: none;
+   z-index: 1;
+}
+
+body::after {
+   content: '';
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-image: 
+       radial-gradient(1px 1px at 50px 50px, #ffc0cb, transparent),
+       radial-gradient(2px 2px at 100px 25px, #fff, transparent),
+       radial-gradient(1px 1px at 150px 75px, #ffb6c1, transparent),
+       radial-gradient(1px 1px at 200px 45px, #ffd1dc, transparent),
+       radial-gradient(2px 2px at 250px 85px, #fff, transparent);
+   background-repeat: repeat;
+   background-size: 300px 150px;
+   animation: sparkle 6s linear infinite reverse;
+   pointer-events: none;
+   z-index: 1;
+}
+
+@keyframes sparkle {
+   0%, 100% { 
+       opacity: 0;
+       transform: translateY(0px);
+   }
+   50% { 
+       opacity: 1;
+       transform: translateY(-10px);
+   }
+}
+
+.container {   
+ background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 182, 193, 0.2) 100%);
+ box-shadow: 0 15px 35px rgba(63, 63, 63, 0.3), 0 5px 15px rgba(0,0,0,0.1);
+ backdrop-filter: blur(15px);
+ border: 2px solid rgba(63, 63, 63, 0.3);
+  max-width: 1200px;
+  margin: 4% auto;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+header {
+  text-align: left;
+  margin-bottom: 20px;
+  padding-right: 10px;
+   color: #3e0653;
+  
+}
+
+
+.content-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  
+}
+
+.calendar-section, .tasks-section {
+  flex: 1;
+  min-width: 250px;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(19, 19, 19, 0.3);
+  border: 1px solid #ffd6e7; /* إطار وردي باهت */
+}
+.calendar-section {
+   
+  display: flex;
+  flex-direction: column;
+ justify-content: flex-start;
+}
+.calendar-section h2 {
+  align-self: flex-start; /* يجعل العنوان يلتصق باليمين داخل flex container */
+  text-align:left ;
+  color: #3e0653;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  padding-right: 10px;
+}
+
+.tasks-section {
+  background-color: #fff; /* خلفية بيضاء */
+}
+.tasks-section h2 {
+  text-align: left;
+  color: #3e0653;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  padding-right: 10px;
+}
+.task-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.task-list li.done {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.add-task {
+  display: flex;
+  gap: 10px;
+}
+
+.add-task input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+.add-task input:focus {
+  border: 2px solid #ccc !important; /* أو أي لون تحبه */
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.add-task button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #ffc107;
+  color: 3e0653;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.task-list li {
+ margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background-color: #faf9b7;
+  transition: background-color 0.2s ease;
+  font-size: 16px;
+}
+
+.task-list li:hover {
+     background-color: #fdfb80;
+}
+
+
+
+.task-buttons .edit-btn,
+.task-buttons .delete-btn {
+      border: none;
+  background-color: transparent !important;
+  margin-left: 4px; /* أقل من السابق */
+  gap: 8px;
+}
+.task-buttons .edit-btn i,
+.task-buttons .delete-btn i {
+  font-size: 22px;
+  cursor: pointer;
+  color: #3e0653;
+  transition: transform 0.2s;
+
+}
+
+.task-buttons .edit-btn i:hover,
+.task-buttons .delete-btn i:hover {
+  transform: scale(1.2);
+}
+
+/* الجزء الخاص بالتقويم  */
+.mini-calendar {
+  border: 1px solid  #ffc107;
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  padding: 12px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(158, 157, 122, 0.1);
+}
+#calendar-header {
+  background-color: #ffc107;
+ font-size: 22px;
+  font-weight: 650;
+  margin-bottom: 4px;
+}
+
+
+#calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 20px;
+}
+#calendar-days div {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+#calendar-days div:hover {
+  background-color: #e2e2e2;
+  border: 1px solid #634a02;
+  border-radius: 50%;
+}
+.day-name {
+  color: #3e0653; 
+  font-weight: bold;
+  text-align: center;
+}
+.today {
+  background-color: #ffc107;
+  color: #3e0653;
+  border: 1px solid #634a02;
+  border-radius: 50% !important;
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+.calendar-nav {
+   background-color: #ffc107;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  color: #3e0653;
+   font-size: 28px;
+  font-weight: 700;
+}
+
+.nav-btn {
+  background-color: #ffc107;
+  color: #3e0653;
+  border: none;
+  padding: 6px 20px;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+/* الكود المخصص لرؤية نقطة حمراء في الايام التي توجد بها مهمات */
+
+.day-number.has-tasks {
+  position: relative;
+}
+
+.day-number.has-tasks::after {
+  content: "";
+  position: absolute;
+  bottom: 4px; /* المسافة من أسفل العنصر */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background-color: #ff4757;
+  border-radius: 50%;
+}
+
+
+/* 📱 Responsive Rules */
+@media (max-width: 740px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .calendar-section,
+  .tasks-section {
+    width: 100%;
+  }
+
+  .add-task {
+    flex-direction: column;
+  }
+
+  #taskInput {
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+
+  #addTaskBtn {
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .icons {
+    margin-top: 5px;
+  }
+}
+
+.calendar-header-container {
+     display: flex;
+    
+     gap: 15px;
+     margin-bottom: 20px;
+ 
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+   }
+
+   .calendar-header-container h2 {
+     color: #3e0653;
+     font-size: 1.8rem;
+   }
+   /* أيقونة ورقة التقويم */
+   .calendar-icon {
+     position: relative;
+     width: 50px;
+     height: 50px;
+     background: linear-gradient(145deg, #ffffff, #f0f0f0);
+     border-radius: 8px;
+     box-shadow: 
+       0 4px 8px rgba(0, 0, 0, 0.1),
+       inset 0 1px 3px rgba(255, 255, 255, 0.6);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     border: 2px solid #e0e0e0;
+     transition: all 0.3s ease;
+     
+   }
+   .calendar-icon:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+   }
+
+   /* الجزء العلوي من الأيقونة (اللون الأحمر) */
+   .calendar-icon::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     height: 12px;
+     background: #3e0653;
+    
+     box-shadow: inset 0 1px 2px rgba(43, 42, 42, 0.3);
+   }
+   /* النقاط الصغيرة في الأعلى (مثل الحلقات) */
+   .calendar-icon::after {
+     content: '';
+     position: absolute;
+     top: -2px;
+     left: 50%;
+     transform: translateX(-50%);
+     width: 6px;
+     height: 6px;
+     background: #3e0653;
+     border-radius: 50%;
+     box-shadow: 
+       -12px 0 0 #3e0653,
+       12px 0 0 #3e0653;
+   }
+   .calendar-icon .month-text {
+     font-size: 10px;
+     font-weight: bold;
+     color: #3e0653;
+     margin-top: 8px;
+     letter-spacing: 0.5px;
+     text-transform: uppercase;
+   }
+.no-tasks-message {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 25px 20px;
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    font-size: 1.15rem;
+    font-weight: 500;
+    border-radius: 12px;
+    border: 2px dashed #dee2e6;
+    list-style: none;
+    margin: 20px 0;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.no-tasks-message:hover {
+    border-color: #adb5bd;
+    background: linear-gradient(135deg, #f1f3f4 0%, #e2e6ea 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.no-tasks-message::before {
+    
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    opacity: 0.7;
+    content: "📝";
+}
+body.dark-mode {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+}

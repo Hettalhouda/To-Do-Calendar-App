@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do Calendar App</title>
+  <link rel="stylesheet"  href="style.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  
+    <!-- ابط مكتبة SweetAlert2-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+      
+<div class="container">
+    <header>
+        <h1>ToDo List</h1>
+    </header>
+
+    <div class="content-wrapper">
+        <!-- التقويم في اليمين -->
+      <section class="calendar-section">
+        <div class="calendar-header-container">
+           <h2>Calendar</h2>
+           <div class="calendar-icon">
+               <div class="month-text" id="month-icon-text">JAN</div>
+           </div>
+       </div>
+        <div class="mini-calendar">
+                    <div class="calendar-nav">
+                        <button id="prev-month" class="nav-btn" aria-label="Previous month">‹</button>
+                        <div id="calendar-header" role="heading" aria-level="2"></div>
+                        <button id="next-month" class="nav-btn" aria-label="Next month">›</button>
+                    </div>
+                    <div id="calendar-days" role="grid"></div>
+        </div>
+      </section>
+
+
+
+        <!-- المهام في اليسار -->
+        <section class="tasks-section">
+            <h2>Tasks for: <span id="selectedDate">---</span></h2>
+            
+            <div class="add-task">
+                <input type="text" id="taskInput" placeholder="add new task.." />
+                <button id="addTaskBtn">Add</button>
+            </div>
+            <ul id="taskList" class="task-list"></ul>
+        </section>
+  </div>
+</div>
+
+<script src="script.js">   </script>
+
+</body>
+</html>
